@@ -1,4 +1,4 @@
-import { getDetails, Result } from "@/api/callsApi";
+import { getSingleCharacter, Result } from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 
@@ -11,7 +11,7 @@ export const getServerSideProps = async (
   let response = null;
 
   if (param !== "") {
-    response = await getDetails(param);
+    response = await getSingleCharacter(param);
   }
 
   return { props: { response } };

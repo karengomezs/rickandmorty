@@ -1,5 +1,3 @@
-import { data } from "autoprefixer";
-
 export interface RootObject {
   info: Info;
   results: Result[];
@@ -63,7 +61,7 @@ export async function getFigures(BaseUrl: UrlsT) {
   }
 }
 
-export async function getDetails(id: string) {
+export async function getSingleCharacter(id: string) {
   try {
     const url: UrlsT = `https://rickandmortyapi.com/api/character/${id}`;
     const response = await fetch(url);
@@ -90,6 +88,17 @@ export async function getDetailsLocation(number: string) {
     const url: UrlsT = `https://rickandmortyapi.com/api/location/${number}`;
     const response = await fetch(url);
     const data: LocationResult = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getMultipleCharacters(ids: string) {
+  try {
+    const url: UrlsT = `https://rickandmortyapi.com/api/character/${ids}`;
+    const response = await fetch(url);
+    const data: Result = await response.json();
     return data;
   } catch (error) {
     console.error(error);

@@ -1,4 +1,9 @@
-import { getEpisodeDetails, EpisodeResult } from "@/api/callsApi";
+import {
+  getEpisodeDetails,
+  EpisodeResult,
+  getMultipleCharacters,
+  Result,
+} from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 
@@ -12,19 +17,29 @@ export const getServerSideProps = async (
     response = await getEpisodeDetails(param);
   }
 
-  return { props: { response } };
-};
-
-type Props = { response: EpisodeResult | null };
-
-export default function Episode(props: Props) {
-  const characters = props.response?.characters.map((character) => {
+  const charactersIds = response?.characters.map((character) => {
     const textArr = character.split("/");
     const number = textArr[textArr.length - 1];
+    return number;
+  });
 
+  const stringCharactersIds = charactersIds?.join(",");
+
+  let characters = null;
+  if (stringCharactersIds) {
+    characters = await getMultipleCharacters(stringCharactersIds);
+  }
+
+  return { props: { response, characters } };
+};
+
+type Props = { response: EpisodeResult | null; characters: Result[] | null };
+
+export default function Episode(props: Props) {
+  const characters = props.characters?.map((character) => {
     return (
-      <Link key={character} href={`/details?idCharacter=${number}`}>
-        <li> Character {number}</li>
+      <Link href={`/details?idCharacter=${character.id}`} key={character.id}>
+        <img src={character.image} alt="" />
       </Link>
     );
   });
