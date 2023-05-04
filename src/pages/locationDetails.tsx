@@ -47,7 +47,10 @@ export default function LocationDetails(props: Props) {
   // });
 
   const residents = props.characters?.map((character) => {
-    return character.image;
+    return {
+      src: character.image,
+      href: `/details?idCharacter=${character.id}`,
+    };
   });
 
   return (

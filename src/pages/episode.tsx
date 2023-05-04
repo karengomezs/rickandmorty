@@ -38,7 +38,10 @@ type Props = { response: EpisodeResult | null; characters: Result[] | null };
 
 export default function Episode(props: Props) {
   const charactersImg = props.characters?.map((character) => {
-    return character.image;
+    return {
+      src: character.image,
+      href: `/details?idCharacter=${character.id}`,
+    };
   });
 
   return (

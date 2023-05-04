@@ -1,7 +1,11 @@
 import estilos from "./Slider.module.css";
+import Link from "next/link";
 import { useState } from "react";
 
-type Props = { imagenes: string[] | undefined; mount?: number };
+type Props = {
+  imagenes: { src: string; href: string }[] | undefined;
+  mount?: number;
+};
 
 export default function Slider({ imagenes, mount = 5 }: Props) {
   const [imagenActual, setImagenActual] = useState<number>(0);
@@ -31,11 +35,13 @@ export default function Slider({ imagenes, mount = 5 }: Props) {
   return (
     <div className={estilos.container}>
       <button onClick={anteriorImg}>{"<"}</button>
-      {imagenes.map((imagen: string, i: number) => {
+      {imagenes.map((imagen, i: number) => {
         return (
           <div key={i}>
             {i >= imagenActual && i < imagenActual + mount && (
-              <img src={imagen} alt="" />
+              <Link href={imagen.href}>
+                <img src={imagen.src} alt="" />
+              </Link>
             )}
           </div>
         );
