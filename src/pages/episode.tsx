@@ -39,7 +39,7 @@ export default function Episode(props: Props) {
   const characters = props.characters?.map((character) => {
     return (
       <Link href={`/details?idCharacter=${character.id}`} key={character.id}>
-        <img src={character.image} alt="" />
+        <img className="w-3/5" src={character.image} alt="" />
       </Link>
     );
   });
@@ -51,7 +51,7 @@ export default function Episode(props: Props) {
         <h3>Fecha al aire: {props.response?.air_date}</h3>
         <h3>Episode Name: {props.response?.name}</h3>
         <h3>CHARACTERS</h3>
-        <ul>{characters}</ul>
+        <div className="flex flex-wrap w-screen">{characters}</div>
       </main>
     </>
   );

@@ -1,4 +1,9 @@
-import { getDetailsLocation, LocationResult } from "@/api/callsApi";
+import {
+  getDetailsLocation,
+  LocationResult,
+  getMultipleCharacters,
+  Result,
+} from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 
@@ -13,25 +18,35 @@ export const getServerSideProps = async (
     response = await getDetailsLocation(params);
   }
 
-  return { props: { response } };
-};
-
-type Props = { response: LocationResult | null };
-
-export default function LocationDetails(props: Props) {
-  function extractedNumber(text: string | undefined): string | undefined {
-    const textArr = text?.split("/");
-    const number = textArr?.[textArr.length - 1];
+  const charactersIds = response?.residents.map((character) => {
+    const textArr = character.split("/");
+    const number = textArr[textArr.length - 1];
     return number;
+  });
+
+  const stringCharactersIds = charactersIds?.join();
+
+  let characters = null;
+  if (stringCharactersIds) {
+    characters = await getMultipleCharacters(stringCharactersIds);
   }
 
-  const residents = props.response?.residents.map((resident) => {
+  return { props: { response, characters } };
+};
+
+type Props = { response: LocationResult | null; characters: Result[] | null };
+
+export default function LocationDetails(props: Props) {
+  // function extractedNumber(text: string | undefined): string | undefined {
+  //   const textArr = text?.split("/");
+  //   const number = textArr?.[textArr.length - 1];
+  //   return number;
+  // }
+
+  const residents = props.characters?.map((character) => {
     return (
-      <Link
-        key={resident}
-        href={`/details?idCharacter=${extractedNumber(resident)}`}
-      >
-        <li>Resident {extractedNumber(resident)}</li>
+      <Link key={character.id} href={`/details?idCharacter=${character.id}`}>
+        <img className="w-3/5" src={character.image} alt="" />
       </Link>
     );
   });
@@ -44,7 +59,7 @@ export default function LocationDetails(props: Props) {
         <h3>Type: {props.response?.type}</h3>
         <h3>Dimension: {props.response?.dimension}</h3>
         <h3>RESIDENTS</h3>
-        <ul>{residents}</ul>
+        <div className="flex flex-wrap w-screen">{residents}</div>
       </main>
     </>
   );
