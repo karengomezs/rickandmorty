@@ -4,6 +4,7 @@ import {
   getMultipleCharacters,
   Result,
 } from "@/api/callsApi";
+import Slider from "../../components/Slider";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 
@@ -36,12 +37,8 @@ export const getServerSideProps = async (
 type Props = { response: EpisodeResult | null; characters: Result[] | null };
 
 export default function Episode(props: Props) {
-  const characters = props.characters?.map((character) => {
-    return (
-      <Link href={`/details?idCharacter=${character.id}`} key={character.id}>
-        <img className="w-3/5" src={character.image} alt="" />
-      </Link>
-    );
+  const charactersImg = props.characters?.map((character) => {
+    return character.image;
   });
 
   return (
@@ -51,7 +48,8 @@ export default function Episode(props: Props) {
         <h3>Fecha al aire: {props.response?.air_date}</h3>
         <h3>Episode Name: {props.response?.name}</h3>
         <h3>CHARACTERS</h3>
-        <div className="flex flex-wrap w-screen">{characters}</div>
+
+        <Slider imagenes={charactersImg} />
       </main>
     </>
   );

@@ -6,6 +6,7 @@ import {
 } from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
+import Slider from "../../components/Slider";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -37,18 +38,16 @@ export const getServerSideProps = async (
 type Props = { response: LocationResult | null; characters: Result[] | null };
 
 export default function LocationDetails(props: Props) {
-  // function extractedNumber(text: string | undefined): string | undefined {
-  //   const textArr = text?.split("/");
-  //   const number = textArr?.[textArr.length - 1];
-  //   return number;
-  // }
+  // const residents = props.characters?.map((character) => {
+  //   return (
+  //     <Link key={character.id} href={`/details?idCharacter=${character.id}`}>
+  //       <img className="w-3/5" src={character.image} alt="" />
+  //     </Link>
+  //   );
+  // });
 
   const residents = props.characters?.map((character) => {
-    return (
-      <Link key={character.id} href={`/details?idCharacter=${character.id}`}>
-        <img className="w-3/5" src={character.image} alt="" />
-      </Link>
-    );
+    return character.image;
   });
 
   return (
@@ -59,7 +58,7 @@ export default function LocationDetails(props: Props) {
         <h3>Type: {props.response?.type}</h3>
         <h3>Dimension: {props.response?.dimension}</h3>
         <h3>RESIDENTS</h3>
-        <div className="flex flex-wrap w-screen">{residents}</div>
+        <Slider imagenes={residents} />
       </main>
     </>
   );
