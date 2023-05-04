@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import { getFigures } from "@/api/callsApi";
 import { RootObject } from "@/api/callsApi";
 
@@ -29,10 +30,12 @@ export default function Home(props: PropsT) {
 
   const characters = charactersData?.map((character) => {
     return (
-      <div key={character.id}>
-        <img src={character.image} className="h-3/4" alt="" />
-        <p>{character.name}</p>
-      </div>
+      <Link key={character.id} href={`/details?idCharacter=${character.id}`}>
+        <div>
+          <img src={character.image} className="h-3/4" alt="" />
+          <p>{character.name}</p>
+        </div>
+      </Link>
     );
   });
 
