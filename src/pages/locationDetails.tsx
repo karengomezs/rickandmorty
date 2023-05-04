@@ -6,7 +6,6 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const params = (context.query.number as string) || "";
-  console.log(params);
 
   let response = null;
 

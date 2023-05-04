@@ -29,9 +29,6 @@ function extractedNumber(text: string | undefined): string | undefined {
 
 export default function CharacterDetails(props: Props) {
   const episodes = props.response?.episode.map((episode, i) => {
-    // const textArr = episode.split("/");
-    // const number = textArr[textArr.length - 1];
-
     return (
       <Link key={i} href={`/episode?number=${extractedNumber(episode)}`}>
         <li>Episode {extractedNumber(episode)}</li>

@@ -7,9 +7,6 @@ export const getServerSideProps = async () => {
   type UrlsT = string;
   const BaseUrl: UrlsT = "https://rickandmortyapi.com/api/character";
   const response = await getFigures(BaseUrl);
-  //console.log({ response });
-  //const results = response?.results;
-  //console.log({ results });
   return { props: { response } };
 };
 
