@@ -32,14 +32,23 @@ interface Info {
   prev?: any;
 }
 
-export interface EpisodeResult {
+interface CommonType {
   id: number;
   name: string;
+  url: string;
+  created: string;
+}
+
+export interface EpisodeResult extends CommonType {
   air_date: string;
   episode: string;
   characters: string[];
-  url: string;
-  created: string;
+}
+
+export interface LocationResult extends CommonType {
+  type: string;
+  dimension: string;
+  residents: string[];
 }
 
 type UrlsT = string;
@@ -70,6 +79,17 @@ export async function getEpisodeDetails(number: string) {
     const url: UrlsT = `https://rickandmortyapi.com/api/episode/${number}`;
     const response = await fetch(url);
     const data: EpisodeResult = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getDetailsLocation(number: string) {
+  try {
+    const url: UrlsT = `https://rickandmortyapi.com/api/location/${number}`;
+    const response = await fetch(url);
+    const data: LocationResult = await response.json();
     return data;
   } catch (error) {
     console.error(error);
