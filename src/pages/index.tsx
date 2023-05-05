@@ -2,6 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { getFigures } from "@/api/callsApi";
 import { RootObject } from "@/api/callsApi";
+import { Button, buttonVariants } from "components/ui/button";
 
 export const getServerSideProps = async () => {
   type UrlsT = string;
@@ -41,6 +42,8 @@ export default function Home(props: PropsT) {
       <h1 className="text-3xl text-center">RICK AND MORTY</h1>
       <main className="flex flex-col min-h-screen py-10 px-4 max-w-6xl mx-auto">
         <div className="grid grid-cols-4 gap-4">{characters}</div>
+
+        <Button variant="default">karen</Button>
 
         <button
           className="bg-amber-600 w-1/5 mb-6"
