@@ -2,7 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { getFigures } from "@/api/callsApi";
 import { RootObject } from "@/api/callsApi";
-import { Button, buttonVariants } from "components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 export const getServerSideProps = async () => {
   type UrlsT = string;

@@ -6,7 +6,7 @@ import {
 } from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
-import Slider from "../../components/Slider";
+import Slider from "../components/Slider";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext

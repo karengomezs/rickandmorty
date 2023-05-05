@@ -4,7 +4,7 @@ import {
   getMultipleCharacters,
   Result,
 } from "@/api/callsApi";
-import Slider from "../../components/Slider";
+import Slider from "../components/Slider";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 
