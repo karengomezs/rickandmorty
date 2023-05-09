@@ -38,7 +38,7 @@ export default function CharacterDetails(props: Props) {
 
   return (
     <>
-      <h1 className="text-3xl text-center">DETAILS</h1>
+      <h1 className="text-3xl text-center">CHARACTER</h1>
       <main className="flex flex-col min-h-screen py-10 px-4 max-w-6xl mx-auto">
         <img className="w-1/3" src={props.response?.image} alt="" />
         <h3>Gender: {props.response?.gender}</h3>

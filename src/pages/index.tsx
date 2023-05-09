@@ -4,8 +4,6 @@ import { getFigures } from "@/api/callsApi";
 import { RootObject } from "@/api/callsApi";
 import { Button } from "@/components/ui/button";
 
-import { myFont } from "@/styles/font";
-
 export const getServerSideProps = async () => {
   type UrlsT = string;
   const BaseUrl: UrlsT = "https://rickandmortyapi.com/api/character";
@@ -16,8 +14,6 @@ export const getServerSideProps = async () => {
 type PropsT = { response?: RootObject };
 
 export default function Home(props: PropsT) {
-  console.log(myFont);
-
   const [charactersData, setCharactersData] = useState<
     RootObject["results"] | undefined
   >(props.response?.results);
