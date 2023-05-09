@@ -2,7 +2,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { getFigures } from "@/api/callsApi";
 import { RootObject } from "@/api/callsApi";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+
+import { myFont } from "@/styles/font";
 
 export const getServerSideProps = async () => {
   type UrlsT = string;
@@ -14,6 +16,8 @@ export const getServerSideProps = async () => {
 type PropsT = { response?: RootObject };
 
 export default function Home(props: PropsT) {
+  console.log(myFont);
+
   const [charactersData, setCharactersData] = useState<
     RootObject["results"] | undefined
   >(props.response?.results);
@@ -28,10 +32,16 @@ export default function Home(props: PropsT) {
 
   const characters = charactersData?.map((character) => {
     return (
-      <Link key={character.id} href={`/details?idCharacter=${character.id}`}>
-        <div>
-          <img src={character.image} className="h-3/4" alt="" />
-          <p>{character.name}</p>
+      <Link
+        className="group"
+        key={character.id}
+        href={`/details?idCharacter=${character.id}`}
+      >
+        <div className="w-full h-full relative">
+          <img src={character.image} alt="" />
+          <div className="absolute bottom-0 bg-black opacity-25 group-hover:opacity-100 text-white w-full h-10 flex justify-center items-center">
+            <p className="text-xl">{character.name}</p>
+          </div>
         </div>
       </Link>
     );
@@ -39,13 +49,50 @@ export default function Home(props: PropsT) {
 
   return (
     <>
-      <h1 className="text-3xl text-center">RICK AND MORTY</h1>
-      <main className="flex flex-col min-h-screen py-10 px-4 max-w-6xl mx-auto">
-        <div className="grid grid-cols-4 gap-4">{characters}</div>
+      <h1
+        className={`rick-morty-font text-7xl text-center my-4 text-cyan-500 `}
+      >
+        RICK AND MORTY
+      </h1>
 
-        <Button variant="default">karen</Button>
+      <main className="flex flex-col min-h-screen max-w-4xl mx-auto ">
+        <div className="grid grid-cols-5 gap-1 w-full">{characters}</div>
 
-        <button
+        <div className="flex gap-4 pt-10 mx-auto">
+          {prevPage && (
+            <Button
+              size="lg"
+              variant="default"
+              onClick={async () => {
+                if (prevPage) {
+                  const response = await getFigures(prevPage);
+                  setCharactersData(response?.results);
+                  setNextPage(response?.info.next);
+                  setPrevPage(response?.info.prev);
+                }
+              }}
+            >
+              Prev Page
+            </Button>
+          )}
+
+          <Button
+            size="lg"
+            variant="default"
+            onClick={async () => {
+              if (nextPage) {
+                const response = await getFigures(nextPage);
+                setCharactersData(response?.results);
+                setNextPage(response?.info.next);
+                setPrevPage(response?.info.prev);
+              }
+            }}
+          >
+            Next Page
+          </Button>
+        </div>
+
+        {/* <button
           className="bg-amber-600 w-1/5 mb-6"
           onClick={async () => {
             if (prevPage) {
@@ -57,8 +104,8 @@ export default function Home(props: PropsT) {
           }}
         >
           Prev Page
-        </button>
-        <button
+        </button> */}
+        {/* <button
           className="bg-amber-600 w-1/5"
           onClick={async () => {
             if (nextPage) {
@@ -70,7 +117,7 @@ export default function Home(props: PropsT) {
           }}
         >
           Next Page
-        </button>
+        </button> */}
       </main>
     </>
   );
