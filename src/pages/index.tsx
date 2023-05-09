@@ -40,7 +40,9 @@ export default function Home(props: PropsT) {
         <div className="w-full h-full relative">
           <img src={character.image} alt="" />
           <div className="absolute bottom-0 bg-black opacity-25 group-hover:opacity-100 text-white w-full h-10 flex justify-center items-center">
-            <p className="text-xl">{character.name}</p>
+            <p className="text-xl text-ellipsis overflow-hidden whitespace-nowrap">
+              {character.name}
+            </p>
           </div>
         </div>
       </Link>
@@ -75,21 +77,22 @@ export default function Home(props: PropsT) {
               Prev Page
             </Button>
           )}
-
-          <Button
-            size="lg"
-            variant="default"
-            onClick={async () => {
-              if (nextPage) {
-                const response = await getFigures(nextPage);
-                setCharactersData(response?.results);
-                setNextPage(response?.info.next);
-                setPrevPage(response?.info.prev);
-              }
-            }}
-          >
-            Next Page
-          </Button>
+          {nextPage && (
+            <Button
+              size="lg"
+              variant="default"
+              onClick={async () => {
+                if (nextPage) {
+                  const response = await getFigures(nextPage);
+                  setCharactersData(response?.results);
+                  setNextPage(response?.info.next);
+                  setPrevPage(response?.info.prev);
+                }
+              }}
+            >
+              Next Page
+            </Button>
+          )}
         </div>
 
         {/* <button
