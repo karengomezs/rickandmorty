@@ -31,28 +31,54 @@ export default function CharacterDetails(props: Props) {
   const episodes = props.response?.episode.map((episode, i) => {
     return (
       <Link key={i} href={`/episode?number=${extractedNumber(episode)}`}>
-        <li>Episode {extractedNumber(episode)}</li>
+        <li>
+          <b className="underline">Episode {extractedNumber(episode)}</b> 🔗
+        </li>
       </Link>
     );
   });
 
   return (
     <>
-      <h1 className="text-3xl text-center">CHARACTER</h1>
-      <main className="flex flex-col min-h-screen py-10 px-4 max-w-6xl mx-auto">
-        <img className="w-1/3" src={props.response?.image} alt="" />
-        <h3>Gender: {props.response?.gender}</h3>
-        <h3>Name: {props.response?.name}</h3>
-        <h3>Especie: {props.response?.species}</h3>
-        <Link
-          href={`locationDetails?number=${extractedNumber(
-            props.response?.location.url
-          )}`}
-        >
-          <h3>Location: {props.response?.location.name}</h3>
-        </Link>
-        <h3>EPISODES</h3>
-        <ul>{episodes}</ul>
+      <h1
+        className={`rick-morty-font text-7xl text-center my-4 text-cyan-500 `}
+      >
+        CHARACTER
+      </h1>
+      <main className="flex flex-col items-center min-h-screen py-5 max-w-[300px] mx-auto">
+        <div className="border ">
+          <img src={props.response?.image} alt="" />
+          <div className=" text-white px-3 py-3 text-xl">
+            <h3>
+              <span className="text-cyan-300">Name: </span>
+              <b>{props.response?.name}</b>
+            </h3>
+            <h3>
+              <span className="text-cyan-300">Gender: </span>
+              <b>{props.response?.gender}</b>
+            </h3>
+
+            <h3>
+              <span className="text-cyan-300">Specie: </span>
+              <b>{props.response?.species}</b>
+            </h3>
+
+            <Link
+              href={`locationDetails?number=${extractedNumber(
+                props.response?.location.url
+              )}`}
+            >
+              <h3>
+                <span className="text-cyan-300">Location: </span>
+                <b>{props.response?.location.name}</b>
+              </h3>
+            </Link>
+            <h3>
+              <span className="text-cyan-300">Episodes:</span>
+            </h3>
+            <ul>{episodes}</ul>
+          </div>
+        </div>
       </main>
     </>
   );
