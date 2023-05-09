@@ -34,7 +34,12 @@ export default function Slider({ imagenes, mount = 5 }: Props) {
 
   return (
     <div className={estilos.container}>
-      <button onClick={anteriorImg}>{"<"}</button>
+      <button
+        className="text-white me-10 text-6xl hover:text-cyan-300"
+        onClick={anteriorImg}
+      >
+        {"<"}
+      </button>
       {imagenes.map((imagen, i: number) => {
         return (
           <div key={i}>
@@ -46,7 +51,12 @@ export default function Slider({ imagenes, mount = 5 }: Props) {
           </div>
         );
       })}
-      <button onClick={siguienteImg}>{">"}</button>
+      <button
+        className="text-white ms-10 text-6xl hover:text-cyan-300"
+        onClick={siguienteImg}
+      >
+        {">"}
+      </button>
     </div>
   );
 }

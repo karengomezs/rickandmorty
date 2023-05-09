@@ -45,15 +45,24 @@ export default function Episode(props: Props) {
   });
 
   return (
-    <>
-      <h1 className="text-3xl text-center">EPISODE {props.response?.name}</h1>
-      <main className="flex flex-col min-h-screen py-10 px-4 max-w-6xl mx-auto">
-        <h3>Fecha al aire: {props.response?.air_date}</h3>
-        <h3>Episode Name: {props.response?.name}</h3>
-        <h3>CHARACTERS</h3>
+    <div className="h-screen flex flex-col">
+      <h1
+        className={`rick-morty-font text-7xl text-center my-4 text-cyan-500 `}
+      >
+        {props.response?.name}
+      </h1>
+      <main className="flex flex-col flex-1 items-center  max-w-6xl mx-auto">
+        <h3 className="text-xl mt-10">
+          <span className="text-cyan-300">Air Date: </span>
+          <b className="text-white">{props.response?.air_date}</b>
+        </h3>
 
-        <Slider imagenes={charactersImg} />
+        <h3 className="text-cyan-300 text-xl mb-20">
+          <b>CHARACTERS</b>
+        </h3>
+
+        <Slider mount={3} imagenes={charactersImg} />
       </main>
-    </>
+    </div>
   );
 }
