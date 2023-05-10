@@ -70,7 +70,7 @@ export default function CharacterDetails(props: Props) {
             >
               <h3>
                 <span className="text-cyan-300">Location: </span>
-                <b>{props.response?.location.name}</b>
+                <b className="underline">{props.response?.location.name}</b> 🔗
               </h3>
             </Link>
             <h3>

@@ -30,7 +30,6 @@ export default function Slider({ imagenes, mount = 5 }: Props) {
       setImagenActual(imagenActual - 1);
     }
   };
-  console.log({ imagenActual });
 
   return (
     <div className={estilos.container}>
