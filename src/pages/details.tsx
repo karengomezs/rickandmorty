@@ -1,8 +1,8 @@
 import { getSingleCharacter, Result } from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
+import H1 from "@/components/H1";
 import H3Span from "@/components/H3";
-import Navbar from "@/components/Navbar";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -42,11 +42,8 @@ export default function CharacterDetails(props: Props) {
 
   return (
     <>
-      <h1
-        className={`rick-morty-font text-7xl text-center my-4 text-cyan-500 `}
-      >
-        CHARACTER
-      </h1>
+      <H1 title="CHARACTER" />
+
       <main className="flex flex-col items-center min-h-screen py-5 max-w-[300px] mx-auto">
         <div className="border ">
           <img src={props.response?.image} alt="" />
