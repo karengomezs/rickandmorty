@@ -4,6 +4,7 @@ import { RootObject } from "@/api/callsApi";
 import { Button } from "@/components/ui/button";
 import HoverEffect from "@/components/Hoverffect";
 import H1 from "@/components/H1";
+import Navbar from "@/components/Navbar";
 
 export const getServerSideProps = async () => {
   type UrlsT = string;

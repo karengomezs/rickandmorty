@@ -2,6 +2,7 @@ import { getSingleCharacter, Result } from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import H3Span from "@/components/H3";
+import Navbar from "@/components/Navbar";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
