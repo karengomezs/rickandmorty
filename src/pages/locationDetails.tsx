@@ -5,8 +5,8 @@ import {
   Result,
 } from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
-import Link from "next/link";
 import Slider from "../components/Slider";
+import H1 from "@/components/H1";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -42,16 +42,14 @@ export default function LocationDetails(props: Props) {
     return {
       src: character.image,
       href: `/details?idCharacter=${character.id}`,
+      nameCharacter: character.name,
     };
   });
 
   return (
     <div className="h-screen flex flex-col">
-      <h1
-        className={`rick-morty-font text-7xl text-center my-4 text-cyan-500 `}
-      >
-        {props.response?.name}
-      </h1>
+      <H1 title={props.response?.name} />
+
       <main className="flex flex-col flex-1 items-center max-w-6xl mx-auto">
         <h3 className="text-xl mt-10">
           <span className="text-cyan-300">Dimension: </span>

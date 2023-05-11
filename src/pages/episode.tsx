@@ -6,6 +6,7 @@ import {
 } from "@/api/callsApi";
 import Slider from "../components/Slider";
 import { GetServerSidePropsContext } from "next";
+import H1 from "@/components/H1";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -46,11 +47,8 @@ export default function Episode(props: Props) {
 
   return (
     <div className="h-screen flex flex-col">
-      <h1
-        className={`rick-morty-font text-7xl text-center my-4 text-cyan-500 `}
-      >
-        {props.response?.name}
-      </h1>
+      <H1 title={props.response?.name} />
+
       <main className="flex flex-col flex-1 items-center  max-w-6xl mx-auto">
         <h3 className="text-xl mt-10">
           <span className="text-cyan-300">Air Date: </span>

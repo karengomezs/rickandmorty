@@ -3,6 +3,7 @@ import { getFigures } from "@/api/callsApi";
 import { RootObject } from "@/api/callsApi";
 import { Button } from "@/components/ui/button";
 import HoverEffect from "@/components/Hoverffect";
+import H1 from "@/components/H1";
 
 export const getServerSideProps = async () => {
   type UrlsT = string;
@@ -38,11 +39,7 @@ export default function Home(props: PropsT) {
 
   return (
     <>
-      <h1
-        className={`rick-morty-font text-7xl text-center my-4 text-cyan-500 `}
-      >
-        RICK AND MORTY
-      </h1>
+      <H1 title="RICK AND MORTY" />
 
       <main className="flex flex-col min-h-screen max-w-4xl mx-auto ">
         <div className="grid grid-cols-5 gap-1 w-full">{characters}</div>
