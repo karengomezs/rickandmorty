@@ -1,6 +1,7 @@
 import { getSingleCharacter, Result } from "@/api/callsApi";
 import { GetServerSidePropsContext } from "next";
 import Link from "next/link";
+import H3Span from "@/components/H3";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -49,29 +50,21 @@ export default function CharacterDetails(props: Props) {
         <div className="border ">
           <img src={props.response?.image} alt="" />
           <div className=" text-white px-3 py-3 text-xl">
-            <h3>
-              <span className="text-cyan-300">Name: </span>
-              <b>{props.response?.name}</b>
-            </h3>
-            <h3>
-              <span className="text-cyan-300">Gender: </span>
-              <b>{props.response?.gender}</b>
-            </h3>
-
-            <h3>
-              <span className="text-cyan-300">Specie: </span>
-              <b>{props.response?.species}</b>
-            </h3>
+            <H3Span info="Name: " data={props.response?.name} />
+            <H3Span info="Gender: " data={props.response?.gender} />
+            <H3Span info="Specie: " data={props.response?.species} />
 
             <Link
               href={`locationDetails?number=${extractedNumber(
                 props.response?.location.url
               )}`}
             >
-              <h3>
-                <span className="text-cyan-300">Location: </span>
-                <b className="underline">{props.response?.location.name}</b> 🔗
-              </h3>
+              <H3Span
+                info="Location: "
+                data={props.response?.location.name}
+                underline="underline"
+                symbol="🔗"
+              />
             </Link>
             <h3>
               <span className="text-cyan-300">Episodes:</span>
