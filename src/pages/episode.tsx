@@ -6,7 +6,6 @@ import {
 } from "@/api/callsApi";
 import Slider from "../components/Slider";
 import { GetServerSidePropsContext } from "next";
-import Link from "next/link";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -41,6 +40,7 @@ export default function Episode(props: Props) {
     return {
       src: character.image,
       href: `/details?idCharacter=${character.id}`,
+      nameCharacter: character.name,
     };
   });
 

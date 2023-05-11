@@ -1,9 +1,10 @@
 import estilos from "./Slider.module.css";
 import Link from "next/link";
 import { useState } from "react";
+import HoverEffect from "../Hoverffect";
 
 type Props = {
-  imagenes: { src: string; href: string }[] | undefined;
+  imagenes: { src: string; href: string; nameCharacter: string }[] | undefined;
   mount?: number;
 };
 
@@ -43,9 +44,11 @@ export default function Slider({ imagenes, mount = 5 }: Props) {
         return (
           <div key={i}>
             {i >= imagenActual && i < imagenActual + mount && (
-              <Link href={imagen.href}>
-                <img src={imagen.src} alt="" />
-              </Link>
+              <HoverEffect
+                linkHref={imagen.href}
+                imgSrc={imagen.src}
+                characterName={imagen.nameCharacter}
+              />
             )}
           </div>
         );
