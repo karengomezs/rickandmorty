@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Link from "next/link";
 import { getFigures } from "@/api/callsApi";
 import { RootObject } from "@/api/callsApi";
 import { Button } from "@/components/ui/button";
+import HoverEffect from "@/components/Hoverffect";
 
 export const getServerSideProps = async () => {
   type UrlsT = string;
@@ -28,20 +28,11 @@ export default function Home(props: PropsT) {
 
   const characters = charactersData?.map((character) => {
     return (
-      <Link
-        className="group"
-        key={character.id}
-        href={`/details?idCharacter=${character.id}`}
-      >
-        <div className="w-full h-full relative">
-          <img src={character.image} alt="" />
-          <div className="absolute bottom-0 bg-black opacity-25 group-hover:opacity-100 text-white w-full h-10 flex justify-center items-center">
-            <p className="text-xl text-ellipsis overflow-hidden whitespace-nowrap">
-              {character.name}
-            </p>
-          </div>
-        </div>
-      </Link>
+      <HoverEffect
+        linkHref={`/details?idCharacter=${character.id}`}
+        imgSrc={character.image}
+        characterName={character.name}
+      />
     );
   });
 
@@ -90,33 +81,6 @@ export default function Home(props: PropsT) {
             </Button>
           )}
         </div>
-
-        {/* <button
-          className="bg-amber-600 w-1/5 mb-6"
-          onClick={async () => {
-            if (prevPage) {
-              const response = await getFigures(prevPage);
-              setCharactersData(response?.results);
-              setNextPage(response?.info.next);
-              setPrevPage(response?.info.prev);
-            }
-          }}
-        >
-          Prev Page
-        </button> */}
-        {/* <button
-          className="bg-amber-600 w-1/5"
-          onClick={async () => {
-            if (nextPage) {
-              const response = await getFigures(nextPage);
-              setCharactersData(response?.results);
-              setNextPage(response?.info.next);
-              setPrevPage(response?.info.prev);
-            }
-          }}
-        >
-          Next Page
-        </button> */}
       </main>
     </>
   );
