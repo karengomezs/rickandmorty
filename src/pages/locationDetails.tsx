@@ -7,6 +7,7 @@ import {
 import { GetServerSidePropsContext } from "next";
 import Slider from "../components/Slider";
 import H1 from "@/components/H1";
+import H3Span from "@/components/H3";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -51,14 +52,19 @@ export default function LocationDetails(props: Props) {
       <H1 title={props.response?.name} />
 
       <main className="flex flex-col flex-1 items-center max-w-6xl mx-auto">
-        <h3 className="text-xl mt-10">
-          <span className="text-cyan-300">Dimension: </span>
-          <b className="text-white">{props.response?.dimension}</b>
-        </h3>
-        <h3 className="text-xl">
-          <span className="text-cyan-300">Type: </span>
-          <b className="text-white">{props.response?.type}</b>
-        </h3>
+        <H3Span
+          info="Dimension: "
+          data={props.response?.dimension}
+          classN="text-white"
+          classNh3="text-xl"
+        />
+        <H3Span
+          info="Type: "
+          data={props.response?.type}
+          classN="text-white"
+          classNh3="text-xl"
+        />
+
         <h3 className="text-cyan-300 text-xl mb-20">
           <b>RESIDENTS</b>
         </h3>

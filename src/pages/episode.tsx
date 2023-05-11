@@ -50,7 +50,7 @@ export default function Episode(props: Props) {
     <div className="h-screen flex flex-col">
       <H1 title={props.response?.name} />
 
-      <main className="flex flex-col flex-1 items-center  max-w-6xl mx-auto">
+      <main className="flex flex-col flex-1 items-center max-w-6xl mx-auto">
         <H3Span
           info="Air Date:"
           data={props.response?.air_date}
