@@ -62,7 +62,7 @@ export default function CharacterDetails(props: Props) {
               <H3Span
                 info="Location: "
                 data={props.response?.location.name}
-                underline="underline"
+                classN="underline"
                 symbol="🔗"
               />
             </Link>

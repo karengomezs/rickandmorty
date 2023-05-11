@@ -7,6 +7,7 @@ import {
 import Slider from "../components/Slider";
 import { GetServerSidePropsContext } from "next";
 import H1 from "@/components/H1";
+import H3Span from "@/components/H3";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
@@ -50,10 +51,11 @@ export default function Episode(props: Props) {
       <H1 title={props.response?.name} />
 
       <main className="flex flex-col flex-1 items-center  max-w-6xl mx-auto">
-        <h3 className="text-xl mt-10">
-          <span className="text-cyan-300">Air Date: </span>
-          <b className="text-white">{props.response?.air_date}</b>
-        </h3>
+        <H3Span
+          info="Air Date:"
+          data={props.response?.air_date}
+          classN="text-white"
+        />
 
         <h3 className="text-cyan-300 text-xl mb-20">
           <b>CHARACTERS</b>
