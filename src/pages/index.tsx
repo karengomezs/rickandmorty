@@ -30,6 +30,7 @@ export default function Home(props: PropsT) {
   const characters = charactersData?.map((character) => {
     return (
       <HoverEffect
+        key={character.id}
         linkHref={`/details?idCharacter=${character.id}`}
         imgSrc={character.image}
         characterName={character.name}
